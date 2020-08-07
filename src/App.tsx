@@ -19,10 +19,12 @@ const ButtonATag = (props: {url: string, text:string}) => (
 )
 
 const convertNewLineToSpace = (text: string): string => {
-  const newSpaced = text.replace(/\n/g, " ")
+  const newSpaced = text.replace(/([0-9]+)\.([0-9]+)/g, "##$1_$2##")
+    .replace(/\n/g, " ")
     .replace(/ +/g, " ")
     .replace(/\./g, ".\n")
     .replace(/^ +/g, "")
+    .replace(/##([0-9])+_([0-9]+)##/g, "$1.$2")
   return newSpaced
 }
 
